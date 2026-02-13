@@ -15,7 +15,7 @@ Switch::Switch(int ports, int timeout)
     : numPorts(ports), agingTimeout(timeout), currentCycle(0),
       framesProcessed(0), learningEvents(0), forwardingEvents(0), floodingEvents(0) {
     std::cout << CYAN << "╔════════════════════════════════════════════════╗\n";
-    std::cout << "║  Layer 2 Ethernet Learning Switch Simulator   ║\n";
+    std::cout << "║  Layer 2 Ethernet Learning Switch Simulator    ║\n";
     std::cout << "╚════════════════════════════════════════════════╝" << RESET << "\n";
     std::cout << "Switch initialized with " << numPorts << " ports\n";
     if (agingTimeout > 0) {
