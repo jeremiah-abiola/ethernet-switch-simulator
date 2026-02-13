@@ -140,7 +140,7 @@ void Switch::cleanupTable() {
 
 void Switch::printMACTable() const {
     std::cout << CYAN << "\n╔════════════════════════════════════════════════╗\n";
-    std::cout << "║           Current MAC Address Table           ║\n";
+    std::cout << "║           Current MAC Address Table            ║\n";
     std::cout << "╚════════════════════════════════════════════════╝" << RESET << "\n";
     
     if (macTable.empty()) {
