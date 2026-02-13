@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)
 
-A professional-grade simulation of an **Ethernet Learning Switch** operating at **Layer 2 (Data Link Layer)** of the OSI model. This project demonstrates fundamental networking concepts including MAC address learning, frame forwarding logic, and switch intelligence.
+A simulation of an **Ethernet Learning Switch** operating at **Layer 2 (Data Link Layer)** of the OSI model. This project demonstrates fundamental networking concepts including MAC address learning, frame forwarding logic, and switch intelligence.
 
 ## 🎯 Project Overview
 
@@ -133,7 +133,7 @@ Frame #5 received on Port 1
 
 ```
 ╔════════════════════════════════════════════════╗
-║           Current MAC Address Table           ║
+║           Current MAC Address Table            ║
 ╚════════════════════════════════════════════════╝
 MAC Address         Port      Age (seconds)
 --------------------------------------------------
@@ -296,11 +296,7 @@ This is an educational project, but improvements are welcome:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📧 Contact
 
-Perfect for networking/systems engineering internship portfolios!
-
-For questions or feedback, please open an issue on GitHub.
 
 ---
 
