@@ -1,0 +1,100 @@
+
+[1m╔══════════════════════════════════════════════════════╗
+║                                                      ║
+║        L2-Sim: Ethernet Learning Switch Simulator    ║
+║                                                      ║
+║              OSI Layer 2 (Data Link Layer)           ║
+║                                                      ║
+╚══════════════════════════════════════════════════════╝
+[0m[1m[36m
+╔════════════════════════════════════════════════╗
+║         SIMULATION: Network Startup            ║
+╚════════════════════════════════════════════════╝
+[0mSimulating a fresh network where devices communicate
+for the first time. Watch how the switch learns!
+
+[36m╔════════════════════════════════════════════════╗
+║  Layer 2 Ethernet Learning Switch Simulator   ║
+╚════════════════════════════════════════════════╝[0m
+Switch initialized with 8 ports
+MAC aging enabled: 300 seconds
+--------------------------------------------------
+
+[35m═══════════════════════════════════════════════
+PHASE 1: Initial Discovery (Unknown Unicast)
+═══════════════════════════════════════════════[0m
+
+Scenario: PC-A broadcasts ARP request 'Who has PC-B?'
+--------------------------------------------------
+[34mFrame #1 received on Port 1[0m
+  Source MAC: [32mAA:AA:AA:AA:AA:AA[0m
+  Dest MAC:   [33mFF:FF:FF:FF:FF:FF[0m
+  [32m✓ LEARNING:[0m Added AA:AA:AA:AA:AA:AA -> Port 1
+  [35m⚡ BROADCAST:[0m Flooding to all ports except Port 1
+    Flooding ports: 2 3 4 5 6 7 8 
+
+Scenario: PC-B responds to PC-A's ARP
+--------------------------------------------------
+[34mFrame #2 received on Port 2[0m
+  Source MAC: [32mBB:BB:BB:BB:BB:BB[0m
+  Dest MAC:   [33mAA:AA:AA:AA:AA:AA[0m
+  [32m✓ LEARNING:[0m Added BB:BB:BB:BB:BB:BB -> Port 2
+  [32m→ FORWARDING:[0m Sending to Port 1 (Known Unicast)
+
+Scenario: PC-A pings PC-C (destination unknown)
+--------------------------------------------------
+[34mFrame #3 received on Port 1[0m
+  Source MAC: [32mAA:AA:AA:AA:AA:AA[0m
+  Dest MAC:   [33mCC:CC:CC:CC:CC:CC[0m
+  ↻ REFRESH: AA:AA:AA:AA:AA:AA timestamp updated on Port 1
+  [31m⚠ UNKNOWN UNICAST:[0m Destination CC:CC:CC:CC:CC:CC not in MAC table
+    Flooding to all ports except Port 1
+    Flooding ports: 2 3 4 5 6 7 8 
+
+Scenario: PC-C responds to PC-A's ping
+--------------------------------------------------
+[34mFrame #4 received on Port 3[0m
+  Source MAC: [32mCC:CC:CC:CC:CC:CC[0m
+  Dest MAC:   [33mAA:AA:AA:AA:AA:AA[0m
+  [32m✓ LEARNING:[0m Added CC:CC:CC:CC:CC:CC -> Port 3
+  [32m→ FORWARDING:[0m Sending to Port 1 (Known Unicast)
+
+[36m
+╔════════════════════════════════════════════════╗
+║           Current MAC Address Table           ║
+╚════════════════════════════════════════════════╝[0m
+MAC Address         Port      Age (seconds)
+--------------------------------------------------
+CC:CC:CC:CC:CC:CC   3         0s
+BB:BB:BB:BB:BB:BB   2         0s
+AA:AA:AA:AA:AA:AA   1         0s
+
+[35m═══════════════════════════════════════════════
+PHASE 2: Known Unicast Forwarding
+═══════════════════════════════════════════════[0m
+
+Now all MACs are learned. Watch the efficient forwarding!
+
+Scenario: PC-A sends data to PC-B (known destination)
+--------------------------------------------------
+[34mFrame #5 received on Port 1[0m
+  Source MAC: [32mAA:AA:AA:AA:AA:AA[0m
+  Dest MAC:   [33mBB:BB:BB:BB:BB:BB[0m
+  ↻ REFRESH: AA:AA:AA:AA:AA:AA timestamp updated on Port 1
+  [32m→ FORWARDING:[0m Sending to Port 2 (Known Unicast)
+
+Scenario: PC-B sends data to PC-C (known destination)
+--------------------------------------------------
+[34mFrame #6 received on Port 2[0m
+  Source MAC: [32mBB:BB:BB:BB:BB:BB[0m
+  Dest MAC:   [33mCC:CC:CC:CC:CC:CC[0m
+  ↻ REFRESH: BB:BB:BB:BB:BB:BB timestamp updated on Port 2
+  [32m→ FORWARDING:[0m Sending to Port 3 (Known Unicast)
+
+Scenario: PC-C sends data to PC-A (known destination)
+--------------------------------------------------
+[34mFrame #7 received on Port 3[0m
+  Source MAC: [32mCC:CC:CC:CC:CC:CC[0m
+  Dest MAC:   [33mAA:AA:AA:AA:AA:AA[0m
+  ↻ REFRESH: CC:CC:CC:CC:CC:CC timestamp updated on Port 3
+  [32m→ FORWARDING:[0m Sending to Port 1 (Known Unicast)
