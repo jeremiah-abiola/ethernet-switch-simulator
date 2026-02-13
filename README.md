@@ -76,8 +76,8 @@ L2-Sim/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/L2-Sim.git
-cd L2-Sim
+git clone https://github.com/jeremiah-abiola/ethernet-switch-simulator.git
+cd ethernet-switch-simulator
 
 # Compile
 make
